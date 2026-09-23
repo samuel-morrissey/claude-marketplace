@@ -1,0 +1,24 @@
+{
+    "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+    "name": "samuel-morrissey-skills",
+    "displayName": "Samuel Morrissey Skills",
+    "version": "1.7.0",
+    "description": "Skills e workflows compartilhados: triagem de issues/PRs e utilitarios de automacao para GitHub Actions.",
+    "author": {
+        "name": "Samuel de Lima",
+        "url": "https://github.com/samuel-morrissey"
+    },
+    "repository": "https://github.com/samuel-morrissey/claude-marketplace",
+    "keywords": [
+        "engineering",
+        "skills",
+        "tdd",
+        "code-review",
+        "grilling",
+        "domain-modeling",
+        "productivity"
+    ],
+    "skills": [
+        "./skills/"
+    ]
+}
