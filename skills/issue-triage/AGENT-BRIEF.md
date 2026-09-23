@@ -1,5 +1,10 @@
 # Brief
 
+> **Skills ainda nao criadas:** `issue-discovery` e `issue-refinement` sao
+> citadas neste arquivo como proximo passo, mas ainda nao existem neste
+> plugin. Ao indicar uma delas, avise que nao e possivel usar a skill
+> referenciada porque ela ainda nao foi criada.
+
 Formatos do que a triagem escreve depois de investigar o codigo: o **brief
 completo**, que vira o corpo de um issue de tipo pontual, e a **leitura de
 codigo**, que
@@ -24,7 +29,7 @@ implementacao sozinho.
 precisa saber quando terminou e **onde olhar**. Cada criterio e testavel de
 forma independente e nomeia a fronteira (seam) em que o comportamento se
 observa sem abrir a implementacao: funcao publica, endpoint, comando, tela.
-E nessa fronteira que o `/issue-implement` escreve o teste antes do codigo — por
+E nessa fronteira que o `/issue-remote-implement` escreve o teste antes do codigo — por
 isso a fronteira e decidida aqui, nao la. Fronteira e fato do codigo: a
 triagem a descobre lendo o repositorio, nao pergunta. So vira pergunta
 quando e escolha de desenho (expor por HTTP ou por funcao interna? API
@@ -41,13 +46,13 @@ evita gold-plating e suposicoes sobre features vizinhas.
 
 ## Brief completo (tipos pontuais)
 
-Vira o corpo do issue: e o contrato do `/issue-implement` (os criterios de aceite
+Vira o corpo do issue: e o contrato do `/issue-remote-implement` (os criterios de aceite
 do corpo sao o que o agente cobre, com teste na fronteira de cada um) ou o
 guia da execucao humana.
 
-**O brief e editavel.** O `/issue-implement` e disparado manualmente e le o corpo
+**O brief e editavel.** O `/issue-remote-implement` e disparado manualmente e le o corpo
 na hora de rodar. Se o humano discorda de uma fronteira, de um criterio ou
-do escopo, o gesto normal e editar o brief antes de comentar `/issue-implement` —
+do escopo, o gesto normal e editar o brief antes de comentar `/issue-remote-implement` —
 nao abrir rodada de perguntas.
 
 A citacao no comeco preserva o **titulo e o texto originais** do issue, na

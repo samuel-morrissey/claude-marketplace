@@ -23,7 +23,7 @@ perguntas. A **fronteira** e o conjunto de perguntas que ja podem ser feitas
 agora, sem chutar respostas que ainda nao vieram.
 
 - Pergunte a fronteira **inteira em uma unica rodada** — em canal assincrono,
-  dentro do handoff da skill `async-first`.
+  dentro do handoff da skill `issue-async-first`.
 - Pergunta que depende de outra ainda aberta pertence a proxima rodada, nao a
   esta.
 - So entram perguntas que **mudam o que sera construido**; curiosidade nao

@@ -9,6 +9,11 @@ allowed-tools: Bash(gh issue view:*) Bash(gh issue comment:*) Bash(gh pr list:*)
 
 # Implement
 
+> **Skill ainda nao criada:** `issue-git-flow` e citada neste arquivo (nome
+> de branch, base e formato de PR), mas ainda nao existe neste plugin. Ao
+> chegar em um passo que depende dela, avise que nao e possivel usar a skill
+> referenciada porque ela ainda nao foi criada.
+
 Executa uma unidade de trabalho de ponta a ponta e termina em **um PR
 aberto**. O merge e a revisao nao sao daqui — o fluxo desta skill acaba na
 abertura do PR.

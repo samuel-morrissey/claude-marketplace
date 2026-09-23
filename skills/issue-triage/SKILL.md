@@ -9,12 +9,17 @@ allowed-tools: Bash(gh issue view:*) Bash(gh issue list:*) Bash(gh issue edit:*)
 
 # Triage
 
+> **Skills ainda nao criadas:** `issue-discovery`, `issue-refinement` e
+> `issue-break-down` sao citadas neste arquivo como proximo passo, mas ainda
+> nao existem neste plugin. Ao indicar uma delas, avise que nao e possivel
+> usar a skill referenciada porque ela ainda nao foi criada.
+
 Caracteriza um issue cru e o entrega pronto para a proxima etapa: investiga o
 codigo, atribui **tipo + label de estado** e registra o que descobriu.
 
 - Issue **pontual** (tipos `[BUG]`, `[FEAT]`, `[REFACTOR]`, `[DOCS]`,
   `[INFRA]` ou, como fallback, `[TASK]`) sai com **brief completo** no corpo
-  e `ready-for-agent` ou `ready-for-human` — pronto para `/issue-implement` ou
+  e `ready-for-agent` ou `ready-for-human` — pronto para `/issue-remote-implement` ou
   execucao humana.
 - Pontual **grande demais para uma sessao unica** (de agente ou de trabalho
   humano) sai com `need-break-down` e leitura de codigo — pronto para
@@ -60,7 +65,7 @@ issue.
 
    `need-triage` e o label de entrada: quem o aplica e um humano, e e esta
    skill quem o remove ao concluir. Em todo `--add-label` abaixo, inclua
-   `--remove-label need-triage` na mesma operacao (regra 1 da `labeling`).
+   `--remove-label need-triage` na mesma operacao (regra 1 da `issue-labeling`).
 
 2. **Procure precedente `wontfix`:**
 
@@ -130,7 +135,7 @@ issue.
 
 6. **Caminho pontual** — o issue sai executavel:
 
-   1. **Escolha o tipo pontual** na tabela da `labeling`: `[BUG]`, `[FEAT]`,
+   1. **Escolha o tipo pontual** na tabela da `issue-labeling`: `[BUG]`, `[FEAT]`,
       `[REFACTOR]`, `[DOCS]` ou `[INFRA]` — o mais especifico que encaixar.
       `[TASK]` e fallback: so quando nenhum dos outros descreve o issue.
       Abaixo, `[TIPO]` e o tipo escolhido.
@@ -188,13 +193,13 @@ issue.
       **Estado:** `ready-for-agent` ou `ready-for-human`
       **Por que:** <uma ou duas frases, incluindo a escolha do executor>
       **Seams:** <as fronteiras dos criterios de aceite, em uma linha>
-      **Proximo passo:** `/issue-implement` ou execucao humana
-      **Antes do `/issue-implement`:** discordou de fronteira, criterio ou escopo?
+      **Proximo passo:** `/issue-remote-implement` ou execucao humana
+      **Antes do `/issue-remote-implement`:** discordou de fronteira, criterio ou escopo?
       Edite o brief no corpo — o implement le o corpo na hora de rodar.
       ```
 
       O `ready-for-agent` **nao** inicia a implementacao: quem da o "vai" e
-      o humano, comentando `/issue-implement`. O intervalo entre os dois e a
+      o humano, comentando `/issue-remote-implement`. O intervalo entre os dois e a
       confirmacao das seams.
 
 7. Responda ao usuario com a classificacao aplicada e a URL do issue.

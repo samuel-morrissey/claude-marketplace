@@ -12,13 +12,13 @@ allowed-tools: Bash(gh issue view:*) Bash(gh issue comment:*)
 Skill de **smoke test**. Ela nao analisa nem modifica nada — sua unica funcao e
 provar, ponta a ponta, que:
 
-1. o marketplace `samuel-morrissey-marketplace` foi resolvido pela action;
+1. o marketplace `samuel-morrissey-claude-marketplace` foi resolvido pela action;
 2. o plugin `samuel-morrissey-skills` foi instalado;
 3. esta skill foi encontrada e invocada;
 4. o token do workflow tem permissao de escrita no issue.
 
 Use quando estiver conectando um repositorio novo ao marketplace, antes de
-ligar as skills de verdade (`/samuel-morrissey-skills:triage`).
+ligar as skills de verdade (`/samuel-morrissey-skills:issue-triage`).
 
 ## Argumento
 
@@ -56,7 +56,7 @@ issue. Nao tente adivinhar nem procurar um issue "provavel".
 
    | Item | Valor |
    |---|---|
-   | Marketplace | `samuel-morrissey-marketplace` |
+   | Marketplace | `samuel-morrissey-claude-marketplace` |
    | Plugin | `samuel-morrissey-skills` |
    | Skill | `hello-issue` |
    | Issue | #[numero] — [titulo] |

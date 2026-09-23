@@ -5,6 +5,11 @@ description: Vocabulario canonico do fluxo de issues - tipos (MAP, SPEC, SUB-TAS
 
 # Labeling
 
+> **Skills ainda nao criadas:** `issue-discovery`, `issue-refinement` e
+> `issue-break-down` sao citadas neste arquivo como proximo passo, mas ainda
+> nao existem neste plugin. Ao indicar uma delas, avise que nao e possivel
+> usar a skill referenciada porque ela ainda nao foi criada.
+
 Referencia canonica de tipos e labels do fluxo de issues. Toda skill que mexe
 em labels segue este vocabulario.
 
@@ -39,9 +44,9 @@ O estado e um **label** e diz o **proximo passo** da issue.
 |---|---|---|---|
 | `need-triage` | Issue crua aguardando triagem. Aplicado por humano (ou issue template) | `/issue-triage` | `FBCA04` |
 | `need-discovery` | Falta descobrir os limites do que se quer construir | `/issue-discovery` | `FBCA04` |
-issue-| `need-refinement` | Falta lapidar requisitos / esclarecer a solicitacao | `/issue-refinement` | `FBCA04` |
+| `need-refinement` | Falta lapidar requisitos / esclarecer a solicitacao | `/issue-refinement` | `FBCA04` |
 | `need-break-down` | Escopo entendido, falta quebrar em sub-tasks | `/issue-break-down` | `FBCA04` |
-| `ready-for-agent` | Unidade executavel que o agente faz sozinho | `/issue-implement` | `0E8A16` |
+| `ready-for-agent` | Unidade executavel que o agente faz sozinho | `/issue-remote-implement` | `0E8A16` |
 | `ready-for-human` | Unidade executavel exclusivamente humana; o agente so orienta | Execucao humana | `1D76DB` |
 | `wontfix` | Nao sera feito. Terminal: a issue e fechada com esse label | — | `FFFFFF` |
 
