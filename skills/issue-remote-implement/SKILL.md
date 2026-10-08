@@ -4,7 +4,7 @@ description: Implementa um issue ready-for-agent de ponta a ponta - cria a branc
 argument-hint: "[numero-do-issue]"
 arguments: issue
 disable-model-invocation: true
-allowed-tools: Bash(gh issue view:*) Bash(gh issue comment:*) Bash(gh pr list:*) Bash(gh pr create:*) Bash(gh pr view:*) Bash(git status:*) Bash(git branch:*) Bash(git checkout:*) Bash(git switch:*) Bash(git fetch:*) Bash(git pull:*) Bash(git add:*) Bash(git commit:*) Bash(git push:*) Bash(git diff:*) Bash(git log:*) Bash(git config:*) Read Grep Glob Edit Write
+allowed-tools: Bash(gh issue view:*) Bash(gh issue comment:*) Bash(gh issue edit:*) Bash(gh label create:*) Bash(gh pr list:*) Bash(gh pr create:*) Bash(gh pr view:*) Bash(git status:*) Bash(git branch:*) Bash(git checkout:*) Bash(git switch:*) Bash(git fetch:*) Bash(git pull:*) Bash(git add:*) Bash(git commit:*) Bash(git push:*) Bash(git diff:*) Bash(git log:*) Bash(git config:*) Read Grep Glob Edit Write
 ---
 
 # Implement
@@ -28,8 +28,8 @@ verificado.
 Travou em algo que so o humano resolve (decisao de produto que o corpo nao
 cobre, acesso faltando, verificacao que nao fica verde dentro do escopo)?
 Siga as skills `grilling` e `issue-async-first`: handoff completo no issue e
-encerre a rodada sem abrir PR. Termine a mensagem com: "responda e comente
-`/issue-remote-implement` para retomar".
+encerre a rodada sem abrir PR, com `awaiting-reply` aplicado. Termine a
+mensagem com: "responda e comente `/implement` para retomar".
 
 ## Argumento
 
@@ -78,7 +78,7 @@ vias, nesta ordem de preferencia:
 
 2. **Leia as rodadas anteriores.** Comentarios carregam handoffs e respostas
    humanas — incorpore antes de comecar. O corpo do issue e lido **agora**:
-   se o humano editou o brief antes de comentar `/issue-remote-implement`, vale a versao
+   se o humano editou o brief antes de comentar `/implement`, vale a versao
    editada.
 
 3. **Crie a branch** conforme a `issue-git-flow`: nome `<tipo>-<numero>`, base
@@ -147,7 +147,8 @@ comentario com o link. Nao ha troca de label: o merge do PR fecha o issue, e
 
 - Fazer merge, aprovar ou iterar em PR ja existente.
 - Commit ou push direto na `main` ou na branch de integracao.
-- Alterar labels, titulo ou corpo do issue.
+- Alterar labels, titulo ou corpo do issue. Unica excecao: aplicar
+  `awaiting-reply` ao encerrar com handoff (`issue-async-first`).
 - Substituir o CI do PR: a verificacao local e o primeiro filtro; o CI
   continua sendo o juiz final.
 - Redesenhar o plano: fronteiras e escopo vem do brief. Discordou? Handoff,

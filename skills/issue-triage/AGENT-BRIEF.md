@@ -52,7 +52,7 @@ guia da execucao humana.
 
 **O brief e editavel.** O `/issue-remote-implement` e disparado manualmente e le o corpo
 na hora de rodar. Se o humano discorda de uma fronteira, de um criterio ou
-do escopo, o gesto normal e editar o brief antes de comentar `/issue-remote-implement` —
+do escopo, o gesto normal e editar o brief antes de comentar `/implement` —
 nao abrir rodada de perguntas.
 
 A citacao no comeco preserva o **titulo e o texto originais** do issue, na

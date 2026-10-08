@@ -32,6 +32,18 @@ A mensagem vai no canal do contexto em que voce esta:
    bloqueia qualquer continuacao do trabalho. Envie a mensagem e encerre a
    rodada; a resposta humana dispara a proxima. Necessidade nao impeditiva
    apenas entra na mensagem final — o trabalho segue completo.
+
+   Em issue ou PR, sinalize a espera com o label `awaiting-reply` (ver
+   `issue-labeling`) logo depois de postar a mensagem, criando-o se faltar:
+
+   ```bash
+   gh label create awaiting-reply --color C5DEF5 \
+     --description "Aguardando resposta humana" 2>/dev/null || true
+   gh issue edit <numero> --add-label awaiting-reply   # em PR: gh pr edit
+   ```
+
+   So intervencao impeditiva leva o label. Quem o remove e o workflow, no
+   inicio da proxima rodada — nao a skill.
 4. **Handoff completo nos canais efemeros.** Em issue e PR a sessao morre com a
    rodada: quem continua e outro agente, sem memoria. A mensagem precisa
    carregar tudo que ele vai precisar:

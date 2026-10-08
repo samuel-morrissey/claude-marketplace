@@ -46,7 +46,7 @@ O estado e um **label** e diz o **proximo passo** da issue.
 | `need-discovery` | Falta descobrir os limites do que se quer construir | `/issue-discovery` | `FBCA04` |
 | `need-refinement` | Falta lapidar requisitos / esclarecer a solicitacao | `/issue-refinement` | `FBCA04` |
 | `need-break-down` | Escopo entendido, falta quebrar em sub-tasks | `/issue-break-down` | `FBCA04` |
-| `ready-for-agent` | Unidade executavel que o agente faz sozinho | `/issue-remote-implement` | `0E8A16` |
+| `ready-for-agent` | Unidade executavel que o agente faz sozinho | Humano comenta `/implement` (skill `issue-remote-implement`) | `0E8A16` |
 | `ready-for-human` | Unidade executavel exclusivamente humana; o agente so orienta | Execucao humana | `1D76DB` |
 | `wontfix` | Nao sera feito. Terminal: a issue e fechada com esse label | — | `FFFFFF` |
 
@@ -54,7 +54,7 @@ O estado e um **label** e diz o **proximo passo** da issue.
 
 `work-in-progress` nao e estado: nao diz o proximo passo da issue, e sim que
 um worker esta atuando nela **agora**. Por isso convive com o label de estado
-vigente — e o unico label que acompanha outro.
+vigente, assim como o `awaiting-reply` (ver "Label de espera").
 
 | Label | Significado | Quem aplica e remove | Cor |
 |---|---|---|---|
@@ -63,6 +63,22 @@ vigente — e o unico label que acompanha outro.
 Issue com `work-in-progress` nao dispara outro worker: os gatilhos dos
 workflows chamadores filtram por ele, e o workflow reutilizavel confere de
 novo antes de comecar (guarda de concorrencia).
+
+## Label de espera
+
+`awaiting-reply` tambem nao e estado: diz que a ultima rodada terminou em uma
+pergunta impeditiva e que a vez agora e de um humano. Convive com o label de
+estado vigente, como o `work-in-progress`.
+
+| Label | Significado | Quem aplica e remove | Cor |
+|---|---|---|---|
+| `awaiting-reply` | Rodada encerrada com pergunta impeditiva; aguarda resposta humana | Aplica: a skill que posta o handoff, conforme a `issue-async-first`. Remove: o workflow, no inicio da proxima rodada | `C5DEF5` |
+
+Lendo os labels juntos:
+
+- `need-triage` + `awaiting-reply` — esperando o humano responder;
+- `need-triage` + `work-in-progress` — worker atuando agora;
+- `need-triage` sozinho — esperando a triagem rodar.
 
 ## Regras
 
@@ -87,6 +103,9 @@ novo antes de comecar (guarda de concorrencia).
 
    `gh issue edit --add-label` falha se o label nao existe — criar primeiro
    evita perder a rodada.
-6. **`work-in-progress` fica fora destas regras.** E label de trabalho, nao
-   de estado — ver a secao "Label de trabalho" acima. Nenhuma skill o aplica,
-   remove ou conta como label de estado.
+6. **`work-in-progress` e `awaiting-reply` ficam fora destas regras.** Nao
+   sao labels de estado — ver as secoes "Label de trabalho" e "Label de
+   espera" acima. Nenhum dos dois conta como label de estado nem e trocado
+   junto com ele. Nenhuma skill aplica ou remove `work-in-progress`; o
+   `awaiting-reply` so e aplicado pela skill que encerra a rodada com
+   pergunta impeditiva.

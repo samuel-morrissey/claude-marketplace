@@ -104,9 +104,9 @@ issue.
    | Pontual | Alteracao bem delimitada (bug, feature pequena, docs, infra…) | tipo pontual + brief completo — passo 6 |
 
    Se o corpo do issue nao da elementos para escolher entre as tres naturezas,
-   a intervencao e impeditiva: comente seguindo o handoff da `issue-async-first` e
-   pare, sem aplicar tipo nem label. O proximo comentario humano dispara nova
-   rodada desta skill.
+   a intervencao e impeditiva: comente seguindo o handoff da `issue-async-first`,
+   aplique `awaiting-reply` e pare, sem aplicar tipo nem label de estado. O
+   proximo comentario humano dispara nova rodada desta skill.
 
 5. **Caminho `[MAP]`/`[SPEC]`** — aplique prefixo no titulo e label de estado:
 
@@ -161,8 +161,8 @@ issue.
       desenho**, nao fato do codigo; ver AGENT-BRIEF.md)? A intervencao e
       impeditiva: invoque a skill `grilling`, monte
       a fronteira de perguntas e envie uma unica rodada dentro do handoff da
-      `issue-async-first`. Pare sem aplicar tipo nem label — o proximo comentario
-      humano dispara nova rodada.
+      `issue-async-first`, aplique `awaiting-reply` e pare sem aplicar tipo nem
+      label de estado — o proximo comentario humano dispara nova rodada.
 
    5. Nao sobrou: escreva o brief no corpo do issue, no formato e principios
       do AGENT-BRIEF.md, preservando **titulo e texto originais** do issue
@@ -193,13 +193,13 @@ issue.
       **Estado:** `ready-for-agent` ou `ready-for-human`
       **Por que:** <uma ou duas frases, incluindo a escolha do executor>
       **Seams:** <as fronteiras dos criterios de aceite, em uma linha>
-      **Proximo passo:** `/issue-remote-implement` ou execucao humana
-      **Antes do `/issue-remote-implement`:** discordou de fronteira, criterio ou escopo?
+      **Proximo passo:** comente `/implement` para o agente implementar, ou execucao humana
+      **Antes do `/implement`:** discordou de fronteira, criterio ou escopo?
       Edite o brief no corpo — o implement le o corpo na hora de rodar.
       ```
 
       O `ready-for-agent` **nao** inicia a implementacao: quem da o "vai" e
-      o humano, comentando `/issue-remote-implement`. O intervalo entre os dois e a
+      o humano, comentando `/implement`. O intervalo entre os dois e a
       confirmacao das seams.
 
 7. Responda ao usuario com a classificacao aplicada e a URL do issue.
@@ -213,8 +213,10 @@ A triagem esta completa quando o issue esta em exatamente um destes estados:
 - tipo pontual + `need-break-down` (sem `need-triage`) + comentario com
   justificativa e leitura de codigo — grande demais para uma sessao unica;
 - fechado como `wontfix` (precedente ou ja implementado);
-- comentario de perguntas aguardando resposta humana, sem tipo e ainda com
-  `need-triage` — e esse label que faz a resposta humana disparar nova rodada.
+- comentario de perguntas aguardando resposta humana, sem tipo, ainda com
+  `need-triage` e com `awaiting-reply` — o `need-triage` faz a resposta
+  humana disparar nova rodada, e o `awaiting-reply` mostra que a vez e do
+  humano.
 
 ## Fora de escopo
 
