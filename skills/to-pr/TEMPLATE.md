@@ -5,10 +5,14 @@ The format every draft follows — a new PR or replacement text for an existing 
 ```markdown
 <title: one line, imperative, no trailing period>
 
+Closes #<issue>   <!-- only when the PR resolves a GitHub issue; one line per issue; drop the line otherwise -->
+
 ## Resumo
 
 One or two sentences: what changes and why. The reviewer should know whether
 this PR concerns them after reading this alone.
+End with `Relacionado: #<issue>` or the ticket key for references the PR
+does not close.
 
 ## Alterações
 
