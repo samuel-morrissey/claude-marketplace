@@ -1,6 +1,6 @@
 ---
 name: issue-remote-implement
-description: Implementa um issue ready-for-agent de ponta a ponta - cria a branch conforme o git-flow, desenvolve test-first nos criterios de aceite, roda as verificacoes de qualidade e abre o PR com Closes. Termina na abertura do PR; verificacao vermelha nao vira PR.
+description: Implementa um issue ready-for-agent de ponta a ponta - cria a branch conforme o git-flow, desenvolve test-first nos criterios de aceite, roda as verificacoes de qualidade, abre o PR com Closes e move o issue para awaiting-pr-review. Termina na abertura do PR; verificacao vermelha nao vira PR.
 argument-hint: "[numero-do-issue]"
 arguments: issue
 disable-model-invocation: true
@@ -123,8 +123,18 @@ vias, nesta ordem de preferencia:
    PR com verificacao vermelha nao existe nesta skill.
 
 6. **Abra o PR** para a base definida pela `issue-git-flow`, com o template dela
-   (`Closes #$issue` + "O que muda" + "Como verificar"). Depois comente no
-   issue:
+   (`Closes #$issue` + "O que muda" + "Como verificar").
+
+7. **Mova o issue para `awaiting-pr-review`**, trocando o label de estado na
+   mesma operacao (ver `issue-labeling`). Crie o label antes, se nao existir:
+
+   ```bash
+   gh label create awaiting-pr-review --color 5319E7 \
+     --description "Implementacao concluida pelo agente; PR aberto e pronto para analise" 2>/dev/null || true
+   gh issue edit $issue --add-label awaiting-pr-review --remove-label ready-for-agent
+   ```
+
+8. **Comente no issue:**
 
    ```markdown
    ## Implement
@@ -139,15 +149,16 @@ vias, nesta ordem de preferencia:
 O implement esta completo quando existe um PR aberto da branch da issue para
 a base certa, cujo corpo comeca com `Closes #$issue`, cujo diff cobre todos os
 criterios de aceite do corpo do issue com teste na fronteira de cada um, cuja
-verificacao esta verde (ou declarada ausente, com motivo), e o issue tem o
-comentario com o link. Nao ha troca de label: o merge do PR fecha o issue, e
-"PR pronto" e derivado do vinculo.
+verificacao esta verde (ou declarada ausente, com motivo), e o issue esta com
+`awaiting-pr-review` no lugar de `ready-for-agent` e tem o comentario com o
+link. O merge do PR fecha o issue.
 
 ## Fora de escopo
 
 - Fazer merge, aprovar ou iterar em PR ja existente.
 - Commit ou push direto na `main` ou na branch de integracao.
-- Alterar labels, titulo ou corpo do issue. Unica excecao: aplicar
+- Alterar labels, titulo ou corpo do issue. Excecoes: trocar
+  `ready-for-agent` por `awaiting-pr-review` ao abrir o PR (passo 7) e aplicar
   `awaiting-reply` ao encerrar com handoff (`issue-async-first`).
 - Substituir o CI do PR: a verificacao local e o primeiro filtro; o CI
   continua sendo o juiz final.
