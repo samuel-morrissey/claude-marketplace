@@ -1,6 +1,6 @@
 ---
 name: issue-labeling
-description: Vocabulario canonico do fluxo de issues - tipos (MAP, SPEC, SUB-TASK e os pontuais BUG/FEAT/REFACTOR/DOCS/INFRA/TASK), labels de estado (need-*, ready-for-*, wontfix), label de trabalho (work-in-progress) e regras de transicao. Use ao aplicar, trocar ou interpretar um label ou prefixo de tipo em um issue.
+description: Vocabulario canonico do fluxo de issues - tipos (MAP, SPEC, SUB-TASK e os pontuais BUG/FEAT/REFACTOR/DOCS/INFRA/TASK), labels de estado (need-*, ready-for-*, awaiting-pr-review, wontfix), label de trabalho (work-in-progress) e regras de transicao. Use ao aplicar, trocar ou interpretar um label ou prefixo de tipo em um issue.
 ---
 
 # Labeling
@@ -48,6 +48,7 @@ O estado e um **label** e diz o **proximo passo** da issue.
 | `need-break-down` | Escopo entendido, falta quebrar em sub-tasks | `/issue-break-down` | `FBCA04` |
 | `ready-for-agent` | Unidade executavel que o agente faz sozinho | Humano comenta `/implement` (skill `issue-remote-implement`) | `0E8A16` |
 | `ready-for-human` | Unidade executavel exclusivamente humana; o agente so orienta | Execucao humana | `1D76DB` |
+| `awaiting-pr-review` | Implementacao concluida pelo agente; PR aberto e pronto para analise | Humano revisa e faz merge do PR (o merge fecha a issue) | `5319E7` |
 | `wontfix` | Nao sera feito. Terminal: a issue e fechada com esse label | — | `FFFFFF` |
 
 ## Label de trabalho
@@ -86,7 +87,9 @@ Lendo os labels juntos:
    de estado atual e aplique o novo na mesma operacao.
 2. **O fluxo so anda para frente:**
    `need-triage → need-discovery → need-refinement → need-break-down →
-   ready-for-*` e, por fim, issue fechada (merge do PR ou fechamento manual). Correcao de
+   ready-for-* → awaiting-pr-review` e, por fim, issue fechada (merge do PR ou
+   fechamento manual). `awaiting-pr-review` so vem de `ready-for-agent`: e a
+   `issue-remote-implement` que o aplica ao abrir o PR. Correcao de
    classificacao ou problema pos-merge vira **issue nova** vinculada — o label
    de uma issue existente permanece no estagio em que esta.
 3. **Quem troca o label e a skill que conclui o estagio.** Cada skill entrega a

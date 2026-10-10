@@ -60,8 +60,9 @@ issue.
 
    Se o titulo ja tem prefixo de tipo ou o issue ja tem label de estado
    posterior a `need-triage` (`need-discovery`, `need-refinement`,
-   `need-break-down`, `ready-for-*`, `wontfix`), ele ja foi triado: comente
-   informando o estado atual e pare (o fluxo so anda para frente).
+   `need-break-down`, `ready-for-*`, `awaiting-pr-review`, `wontfix`), ele ja
+   foi triado: comente informando o estado atual e pare (o fluxo so anda
+   para frente).
 
    `need-triage` e o label de entrada: quem o aplica e um humano, e e esta
    skill quem o remove ao concluir. Em todo `--add-label` abaixo, inclua
